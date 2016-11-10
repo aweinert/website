@@ -1,0 +1,57 @@
+- year: 2016
+  title: "Easy to Win, Hard to Master: Optimal Strategies in Parity Games with Costs"
+  filename: 2016costparity.pdf
+  coauthors:
+    - Martin Zimmermann
+  venue: Accepted for publication at CSL 2016
+  venuelink: http://csl16.lif.univ-mrs.fr/
+  type: conference
+
+- year: 2015
+  title: Visibly Linear Dynamic Logic
+  filename: 2015vldl.pdf
+  coauthors:
+    - Martin Zimmermann
+  venue: arXiv:1512.05177, under submission
+  venuelink: http://arxiv.org/abs/1512.05177
+  type: unpublished
+
+- year: 2015
+  title: Approximating Optimal Bounds in Prompt-LTL Realizability in Doubly-exponential Time
+  filename: 2015pldlapproximation.pdf
+  coauthors:
+    - Leander Tentrup
+    - Martin Zimmermann
+  venue: Accepted for publication at GandALF 2016
+  venuelink: http://gandalf2016.dmi.unict.it/
+  type: conference
+
+- year: 2015
+  title: Automata Tutor and what we learned from building an online teaching tool
+  filename: 2015automatatutor.pdf
+  coauthors:
+    - Loris D'Antoni
+    - Matthew Weaver
+    - Rajeev Alur
+  venue: BEATCS 117
+  venuelink: http://bulletin.eatcs.org/index.php/beatcs/issue/view/19
+  type: journal
+
+- year: 2015
+  title: Analyzing Arithmetic Prolog Programs by Symbolic Execution
+  filename: 2015thesis.pdf
+  venue: Master's Thesis
+  type: thesis
+
+- year: 2014
+  title: Problem Generation for DFA Construction
+  filename: 2014dfageneration.pdf
+  venue: Technical Report UCB/EECS-2015-170
+  venuelink: http://www.eecs.berkeley.edu/Pubs/TechRpts/2015/EECS-2015-170.html
+  type: techreport
+
+- year: 2012
+  title: Inferring Heap Abstraction Grammars
+  filename: 2012thesis.pdf
+  venue: Bachelor's Thesis
+  type: thesis

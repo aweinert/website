@@ -1,0 +1,13 @@
+---
+layout: default
+title: Projects
+---
+
+{% for project in site.data.projects %}
+<h1 class="section-heading">{{ project.name }}</h1>
+
+{% for description_paragraph in project.description %}
+<p>{{ description_paragraph }}</p>
+{% endfor %}
+
+{% endfor %}

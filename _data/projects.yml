@@ -1,0 +1,24 @@
+- name: Automatatutor.com
+  projectlink: http://www.automatatutor.com
+  description: 
+    - An online tool that helps students and instructors to teach and learn basic concepts in automata theory.
+      Provides automated feedback to the student if they provide a wrong automaton.
+      You can try it out <a href="http://www.automatatutor.com">here</a>.
+
+- name: AProVE
+  projectlink: http://aprove.informatik.rwth-aachen.de/
+  description:
+    - During my work on my Master's thesis I have contributed to <a href="http://aprove.informatik.rwth-aachen.de/">AProVE</a>,
+      a powerful tool for proving termination of Java-, C- and Prolog-Programs.
+
+- name: InstRO
+  projectlink: http://www.sc.informatik.tu-darmstadt.de/res/instro_main/index.en.jsp
+  description:
+    - When I was a research assistant at the <a href="http://www.itc.rwth-aachen.de/cms/IT-Center/Forschung-Projekte/~eubj/High-Perfomance-Computing/lidx/1/">
+      Group for High Performance Computing</a> of the <a href="http://www.itc.rwth-aachen.de/cms/~epto/IT-Center/lidx/1/">IT Center</a>
+      of <a href="http://www.rwth-aachen.de">RWTH Aachen University</a>,
+      <a href="http://www.sc.informatik.tu-darmstadt.de/fg/people/christianiwainskydetails.en.jsp">Christian Iwainsky</a> and I 
+      started development on InstRO, a tool for instrumentation of C- and C++-code.
+    - Christian has since moved on to <a href="http://www.tu-darmstadt.de/">Darmstadt University</a>, 
+      where the project is currently under development. You can find the project page 
+      <a href="http://www.sc.informatik.tu-darmstadt.de/res/instro_main/index.en.jsp">here</a>.

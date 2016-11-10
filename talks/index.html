@@ -1,0 +1,20 @@
+---
+layout: default
+title: Talks
+---
+
+<ul>
+{% for talk in site.data.talks %}
+<li>{{ talk.date }}: <b>{{ talk.title }}</b>.<br> {{ talk.occasion }}.
+{% if talk.slideslink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.slideslink}}">Slides</a>.
+{% endif %}
+{% if talk.handoutlink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.handoutlink}}">Handout</a>.
+{% endif %}
+{% if talk.posterlink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.posterlink}}">Poster</a>.
+{% endif %}
+</li>
+{% endfor %}
+</ul>

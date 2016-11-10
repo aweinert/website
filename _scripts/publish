@@ -1,0 +1,4 @@
+#!/bin/bash
+
+jekyll b
+rsync -r _site/ alexanderweinert.net:/www/
