@@ -61,14 +61,14 @@ my <a href="http://dblp.uni-trier.de/pers/hd/w/Weinert:Alexander">dblp entry</a>
 {% for paper in site.data.papers  %}
 	{% if paper.type == "conference" %}
 		<li> <ul class="publication"> 
-			{% if {{paper.coauthors}} != nil %}
+			{% if paper.coauthors != nil %}
 				<li class="publication-title"> {{ paper.title }}, </li> 
 				<li class="coauthor-line"> joint work with {{ paper.coauthors | array_to_sentence_string }} </li>
 			{% else %}
 				<li class="publication-title"> {{ paper.title }}. </li> 
 			{% endif %}
 			<li class="venue-line">
-			{% if {{paper.venuelink}} != nil %}
+			{% if paper.venuelink != nil %}
 				<a href="{{ paper.venuelink }}">{{ paper.venue }}</a>.
 			{% else %}
 				{{ paper.venue }}.
@@ -84,14 +84,14 @@ my <a href="http://dblp.uni-trier.de/pers/hd/w/Weinert:Alexander">dblp entry</a>
 {% for paper in site.data.papers  %}
 	{% if paper.type == "journal" %}
 		<li> <ul class="publication"> 
-			{% if {{paper.coauthors}} != nil %}
+			{% if paper.coauthors != nil %}
 				<li class="publication-title"> {{ paper.title }}, </li> 
 				<li class="coauthor-line"> joint work with {{ paper.coauthors | array_to_sentence_string }} </li>
 			{% else %}
 				<li class="publication-title"> {{ paper.title }}. </li> 
 			{% endif %}
 			<li class="venue-line">
-			{% if {{paper.venuelink}} != nil %}
+			{% if paper.venuelink != nil %}
 				<a href="{{ paper.venuelink }}">{{ paper.venue }}</a>.
 			{% else %}
 				{{ paper.venue }}.
@@ -107,14 +107,14 @@ my <a href="http://dblp.uni-trier.de/pers/hd/w/Weinert:Alexander">dblp entry</a>
 {% for paper in site.data.papers  %}
 	{% if paper.type == "techreport" %}
 		<li> <ul class="publication"> 
-			{% if {{paper.coauthors}} != nil %}
+			{% if paper.coauthors != nil %}
 				<li class="publication-title"> {{ paper.title }}, </li> 
 				<li class="coauthor-line"> joint work with {{ paper.coauthors | array_to_sentence_string }} </li>
 			{% else %}
 				<li class="publication-title"> {{ paper.title }}. </li> 
 			{% endif %}
 			<li class="venue-line">
-			{% if {{paper.venuelink}} != nil %}
+			{% if paper.venuelink != nil %}
 				<a href="{{ paper.venuelink }}">{{ paper.venue }}</a>.
 			{% else %}
 				{{ paper.venue }}.
@@ -130,14 +130,14 @@ my <a href="http://dblp.uni-trier.de/pers/hd/w/Weinert:Alexander">dblp entry</a>
 {% for paper in site.data.papers  %}
 	{% if paper.type == "thesis" %}
 		<li> <ul class="publication"> 
-			{% if {{paper.coauthors}} != nil %}
+			{% if paper.coauthors != nil %}
 				<li class="publication-title"> {{ paper.title }}, </li> 
 				<li class="coauthor-line"> joint work with {{ paper.coauthors | array_to_sentence_string }} </li>
 			{% else %}
 				<li class="publication-title"> {{ paper.title }}. </li> 
 			{% endif %}
 			<li class="venue-line">
-			{% if {{paper.venuelink}} != nil %}
+			{% if paper.venuelink != nil %}
 				<a href="{{ paper.venuelink }}">{{ paper.venue }}</a>.
 			{% else %}
 				{{ paper.venue }}.
@@ -153,14 +153,14 @@ my <a href="http://dblp.uni-trier.de/pers/hd/w/Weinert:Alexander">dblp entry</a>
 {% for paper in site.data.papers  %}
 	{% if paper.type == "unpublished" %}
 		<li> <ul class="publication"> 
-			{% if {{paper.coauthors}} != nil %}
+			{% if paper.coauthors != nil %}
 				<li class="publication-title"> {{ paper.title }}, </li> 
 				<li class="coauthor-line"> joint work with {{ paper.coauthors | array_to_sentence_string }} </li>
 			{% else %}
 				<li class="publication-title"> {{ paper.title }}. </li> 
 			{% endif %}
 			<li class="venue-line">
-			{% if {{paper.venuelink}} != nil %}
+			{% if paper.venuelink != nil %}
 				<a href="{{ paper.venuelink }}">{{ paper.venue }}</a>.
 			{% else %}
 				{{ paper.venue }}.
