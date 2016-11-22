@@ -7,3 +7,4 @@ github_username:  aweinert
 
 # Build settings
 markdown: kramdown
+exclude: [README.md]
