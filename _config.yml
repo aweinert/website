@@ -5,6 +5,12 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://alexanderweinert.net" # the base hostname & protocol for your site
 github_username:  aweinert
 
+gems: ['jekyll/scholar']
+
 # Build settings
 markdown: kramdown
 exclude: [README.md]
+
+# jekyll-scholar settings
+scholar:
+    bibliography_template: bib

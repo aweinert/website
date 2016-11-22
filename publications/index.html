@@ -52,123 +52,17 @@ my <a href="http://dblp.uni-trier.de/pers/hd/w/Weinert:Alexander">dblp entry</a>
 		<li class="navigation-entry"> <a href="#journals"> Journals </a> </li>
 		<li class="navigation-entry"> <a href="#techreports"> Technical Reports </a> </li>
 		<li class="navigation-entry"> <a href="#theses"> Theses </a> </li>
-		<!--<li class="navigation-entry"> <a href="#unpublished"> Unpublished </a> </li>-->
 	</ul>
 </p>
 
 <h1 class="section-heading"><a name="conferences"></a>Conferences<a href="#head"> ⤴ </a> </h1>
-<ul>
-{% for paper in site.data.papers  %}
-	{% if paper.type == "conference" %}
-		<li> <ul class="publication"> 
-			{% if paper.coauthors != nil %}
-				<li class="publication-title"> {{ paper.title }}, </li> 
-				<li class="coauthor-line"> joint work with {{ paper.coauthors | array_to_sentence_string }} </li>
-			{% else %}
-				<li class="publication-title"> {{ paper.title }}. </li> 
-			{% endif %}
-			<li class="venue-line">
-			{% if paper.venuelink != nil %}
-				<a href="{{ paper.venuelink }}">{{ paper.venue }}</a>.
-			{% else %}
-				{{ paper.venue }}.
-			{% endif %}
-			<a href="../assets/pdf/pub/{{paper.year}}/{{paper.filename}}">PDF</a>. </li>
-		</ul> </li>
-	{% endif %}
-{% endfor %}
-</ul>
+{% bibliography --file conference --template bib_conference %}
 
 <h1 class="section-heading"><a name="journals"></a>Journals<a href="#head"> ⤴ </a></h1>
-<ul>
-{% for paper in site.data.papers  %}
-	{% if paper.type == "journal" %}
-		<li> <ul class="publication"> 
-			{% if paper.coauthors != nil %}
-				<li class="publication-title"> {{ paper.title }}, </li> 
-				<li class="coauthor-line"> joint work with {{ paper.coauthors | array_to_sentence_string }} </li>
-			{% else %}
-				<li class="publication-title"> {{ paper.title }}. </li> 
-			{% endif %}
-			<li class="venue-line">
-			{% if paper.venuelink != nil %}
-				<a href="{{ paper.venuelink }}">{{ paper.venue }}</a>.
-			{% else %}
-				{{ paper.venue }}.
-			{% endif %}
-			<a href="../assets/pdf/pub/{{paper.year}}/{{paper.filename}}">PDF</a>. </li>
-		</ul> </li>
-	{% endif %}
-{% endfor %}
-</ul>
+{% bibliography --file journal --template bib_journal %}
 
 <h1 class="section-heading"><a name="journals"></a>Technical Reports<a href="#head"> ⤴ </a></h1>
-<ul>
-{% for paper in site.data.papers  %}
-	{% if paper.type == "techreport" %}
-		<li> <ul class="publication"> 
-			{% if paper.coauthors != nil %}
-				<li class="publication-title"> {{ paper.title }}, </li> 
-				<li class="coauthor-line"> joint work with {{ paper.coauthors | array_to_sentence_string }} </li>
-			{% else %}
-				<li class="publication-title"> {{ paper.title }}. </li> 
-			{% endif %}
-			<li class="venue-line">
-			{% if paper.venuelink != nil %}
-				<a href="{{ paper.venuelink }}">{{ paper.venue }}</a>.
-			{% else %}
-				{{ paper.venue }}.
-			{% endif %}
-			<a href="../assets/pdf/pub/{{paper.year}}/{{paper.filename}}">PDF</a>. </li>
-		</ul> </li>
-	{% endif %}
-{% endfor %}
-</ul>
+{% bibliography --file techreport --template bib_techreport %}
 
 <h1 class="section-heading"><a name="theses"></a>Theses<a href="#head"> ⤴ </a></h1>
-<ul>
-{% for paper in site.data.papers  %}
-	{% if paper.type == "thesis" %}
-		<li> <ul class="publication"> 
-			{% if paper.coauthors != nil %}
-				<li class="publication-title"> {{ paper.title }}, </li> 
-				<li class="coauthor-line"> joint work with {{ paper.coauthors | array_to_sentence_string }} </li>
-			{% else %}
-				<li class="publication-title"> {{ paper.title }}. </li> 
-			{% endif %}
-			<li class="venue-line">
-			{% if paper.venuelink != nil %}
-				<a href="{{ paper.venuelink }}">{{ paper.venue }}</a>.
-			{% else %}
-				{{ paper.venue }}.
-			{% endif %}
-			<a href="../assets/pdf/pub/{{paper.year}}/{{paper.filename}}">PDF</a>. </li>
-		</ul> </li>
-	{% endif %}
-{% endfor %}
-</ul>
-
-<!--
-<h1 class="section-heading"><a name="unpublished"></a>Unpublished<a href="#head"> ⤴ </a></h1>
-<ul>
-{% for paper in site.data.papers  %}
-	{% if paper.type == "unpublished" %}
-		<li> <ul class="publication"> 
-			{% if paper.coauthors != nil %}
-				<li class="publication-title"> {{ paper.title }}, </li> 
-				<li class="coauthor-line"> joint work with {{ paper.coauthors | array_to_sentence_string }} </li>
-			{% else %}
-				<li class="publication-title"> {{ paper.title }}. </li> 
-			{% endif %}
-			<li class="venue-line">
-			{% if paper.venuelink != nil %}
-				<a href="{{ paper.venuelink }}">{{ paper.venue }}</a>.
-			{% else %}
-				{{ paper.venue }}.
-			{% endif %}
-			<a href="../assets/pdf/pub/{{paper.year}}/{{paper.filename}}">PDF</a>. </li>
-		</ul> </li>
-	{% endif %}
-{% endfor %}
-</ul>
--->
+{% bibliography --file thesis --template bib_thesis %}
