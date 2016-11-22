@@ -1,0 +1,8 @@
+<li class="publication-title">{{ entry.title }}</li>
+{% assign aut_array = entry.author | split:' and ' %}
+{% assign aut_array_reversed = "" | split: "," %}
+{% for author in aut_array %}
+	{% assign author_reversed = author | split:', ' | reverse | join: " " %}
+	{% assign aut_array_reversed = aut_array_reversed | push: author_reversed %}
+{% endfor %}
+<li class="coauthor-line">{{ aut_array_reversed | array_to_sentence_string }}</li>

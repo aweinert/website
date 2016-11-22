@@ -1,6 +1,5 @@
 <ul class = "publication">
-	<li class="publication-title">{{ entry.title }}</li>
-	<li class="coauthor-line">{{ entry.author }}</li>
+	{% include_relative _layouts/bib_common.html %}
 	<li class="venue-line">
 		{{ entry.type }}.
 		{{ entry.school }}.
