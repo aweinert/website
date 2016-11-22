@@ -1,29 +1,29 @@
 - year: 2016
-  title: "Easy to Win, Hard to Master: Optimal Strategies in Parity Games with Costs"
-  filename: 2016costparity.pdf
-  coauthors:
-    - Martin Zimmermann
-  venue: Accepted for publication at CSL 2016
-  venuelink: http://csl16.lif.univ-mrs.fr/
-  type: conference
-
-- year: 2015
   title: Visibly Linear Dynamic Logic
   filename: 2015vldl.pdf
   coauthors:
     - Martin Zimmermann
-  venue: arXiv:1512.05177, under submission
-  venuelink: http://arxiv.org/abs/1512.05177
-  type: unpublished
+  venue: Accepted for publication at FSTTCS 2016
+  venuelink: http://fsttcs.org/
+  type: conference
 
-- year: 2015
+- year: 2016
   title: Approximating Optimal Bounds in Prompt-LTL Realizability in Doubly-exponential Time
   filename: 2015pldlapproximation.pdf
   coauthors:
     - Leander Tentrup
     - Martin Zimmermann
-  venue: Accepted for publication at GandALF 2016
+  venue: GandALF 2016
   venuelink: http://gandalf2016.dmi.unict.it/
+  type: conference
+
+- year: 2016
+  title: "Easy to Win, Hard to Master: Optimal Strategies in Parity Games with Costs"
+  filename: 2016costparity.pdf
+  coauthors:
+    - Martin Zimmermann
+  venue: CSL 2016
+  venuelink: http://csl16.lif.univ-mrs.fr/
   type: conference
 
 - year: 2015
