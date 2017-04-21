@@ -65,10 +65,6 @@ class Photography
 
 	def parse_image(path)
 		size = FastImage.size(path)
-		if size == nil
-			puts "#{path} does not exist"
-			exit(1)
-		end
 		return { :path => path, :width => size[0], :height => size[1] }
 	end
 
