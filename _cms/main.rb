@@ -4,6 +4,23 @@ require 'fastimage'
 require 'highline/import'
 require 'fileutils'
 
+module Files
+	def Files.copy_file(from, to)
+		system("cp #{from} #{to}")
+	end
+
+	def Files.get_temp_path()
+		return "temp.jpg"
+	end
+
+	def Files.make_dir(name)
+		system("mkdir #{name}")
+	end
+
+	def Files.remove_file(path)
+		system("rm #{path}")
+	end
+end
 
 
 class Photography
@@ -40,13 +57,7 @@ class Photography
 		system("composite -watermark 30% -gravity southeast -geometry #{wm_position[:width]}x+#{wm_position[:offset_x]}+#{wm_position[:offset_y]} #{watermark[:path]} #{input[:path]} #{target}")
 	end
 
-	def copy_file(from, to)
-		system("cp #{from} #{to}")
-	end
 
-	def get_temp_path()
-		return "temp.jpg"
-	end
 
 	def resize_and_compress(from, longest_edge, quality, to)
 		system("convert #{from} -resize #{longest_edge}x#{longest_edge} -quality #{quality}% #{to}")
@@ -89,35 +100,27 @@ class Photography
 		end
 	end
 
-	def make_dir(name)
-		system("mkdir #{name}")
-	end
-
-	def remove_file(path)
-		system("rm #{path}")
-	end
-
 	def watermark(path, id)
 		image = parse_image(path)
 
 		basename = id
-		make_dir(basename)
+		Files.make_dir(basename)
 		retval = {}
 		@config.each do |pair|
 			current_config = pair[1]
 
-			temp_path = get_temp_path()
+			temp_path = Files.get_temp_path()
 			if current_config[:watermark] != nil
 				watermark = parse_image(current_config[:watermark])
 				wm_position = get_wm_position(watermark, image)
 				add_watermark(image, watermark, wm_position, temp_path)
 			else 
-				copy_file(image[:path], temp_path)
+				Files.copy_file(image[:path], temp_path)
 			end
 
 			target_path = "#{basename}/#{basename}-#{current_config[:suffix]}.jpg"
 			resize_and_compress(temp_path, current_config[:longest_edge],current_config[:quality], target_path)
-			remove_file(temp_path)
+			Files.remove_file(temp_path)
 			retval[pair[0]] = target_path
 		end
 		return retval
@@ -128,18 +131,18 @@ class Photography
 		title = ask("Title? (shown below the photograph)")
 		path = ask("Path to the original photograph?")
 		paths = watermark(path, id)
-		copy_file(paths[:thumb], "../assets/img/thumb/#{id}.jpg")
-		copy_file(paths[:alexanderweinert], "../assets/img/full/#{id}.jpg")
+		Files.copy_file(paths[:thumb], "../assets/img/thumb/#{id}.jpg")
+		Files.copy_file(paths[:alexanderweinert], "../assets/img/full/#{id}.jpg")
 
-		temp_path = get_temp_path()
+		temp_path = Files.get_temp_path()
 		File.open(temp_path, 'a') do |file|
 			file << "- path: #{id}.jpg\n"
 			file << "  title: #{title}\n"
 			file << File.read("../_data/photography.yml")
 		end
 
-		copy_file(temp_path, "../_data/photography.yml")
-		remove_file(temp_path)
+		Files.copy_file(temp_path, "../_data/photography.yml")
+		Files.remove_file(temp_path)
 	end
 end
 
