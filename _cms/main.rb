@@ -22,6 +22,18 @@ module Files
 	end
 end
 
+module ImageMagick
+	def ImageMagick.composite(change_file, base_file, output_image, params)
+		call = "composite "
+		params.each do |pair|
+			call += "-#{pair[0]} #{pair[1]} "
+		end
+
+		call += "#{change_file} #{base_file} #{output_image}"
+		system(call)
+	end
+end
+
 
 class Photography
 	def initialize()
@@ -54,7 +66,12 @@ class Photography
 	end
 
 	def add_watermark(input, watermark, wm_position, target)
-		system("composite -watermark 30% -gravity southeast -geometry #{wm_position[:width]}x+#{wm_position[:offset_x]}+#{wm_position[:offset_y]} #{watermark[:path]} #{input[:path]} #{target}")
+		params = {
+			"watermark" => "30%",
+			"gravity" => "southeast",
+			"geometry" => "#{wm_position[:width]}x+#{wm_position[:offset_x]}+#{wm_position[:offset_y]}"
+		}
+		ImageMagick.composite(watermark[:path], input[:path], target, params)
 	end
 
 
