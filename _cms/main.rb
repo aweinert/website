@@ -83,11 +83,11 @@ class Photo
 		return Photo.new(to)
 	end
 
-	def add_watermark(watermark, wm_position, target)
+	def add_watermark(watermark, wm_position_calc, target)
 		params = {
 			"watermark" => "30%",
 			"gravity" => "southeast",
-			"geometry" => "#{wm_position[:width]}x+#{wm_position[:offset_x]}+#{wm_position[:offset_y]}"
+			"geometry" => "#{wm_position_calc.get_width}x+#{wm_position_calc.get_offset_x}+#{wm_position_calc.get_offset_y}"
 		}
 		ImageMagick.composite(watermark.get_path, @path, target, params)
 
@@ -95,6 +95,42 @@ class Photo
 	end
 end
 
+class WatermarkPositionCalculator
+	def initialize(watermark, image)
+		@watermark = watermark
+		@image = image
+	end
+
+	# Returns the width the watermark shall be displayed at in px
+	def get_width()
+		if(@image.is_landscape)
+			return @image.get_width / 4.0
+		else
+			return @image.get_width / 3.5
+		end
+	end
+
+	def get_height() 
+		self.get_width / @watermark.get_width * @watermark.get_height
+	end
+
+	def get_offset_x()
+		if @image.is_landscape
+			return @image.get_width * 1 / 8
+		else
+			return @image.get_width * 1 / 4
+		end
+	end
+
+	def get_offset_y()
+		if @image.is_landscape
+			return self.get_height
+		else
+			return @image.get_height * 1 / 5
+		end
+	end
+
+end
 
 class Photography
 	def initialize()
@@ -126,29 +162,6 @@ class Photography
 		}
 	end
 
-	def get_wm_position(watermark, image)
-		def landscape(watermark, image)
-			wm_target_width = image.get_width / 4.0
-			wm_target_height = wm_target_width / watermark.get_width * watermark.get_height
-			wm_target_offset_x = image.get_width * 1 / 8
-			wm_target_offset_y = wm_target_height * 1
-			return { :width => wm_target_width.to_i, :offset_x => wm_target_offset_x.to_i, :offset_y => wm_target_offset_y.to_i }
-		end
-
-		def portrait(watermark, image)
-			wm_target_width = image.get_width / 3.5
-			wm_target_offset_x = image.get_width * 1 / 4
-			wm_target_offset_y = image.get_height * 1 / 5
-			return { :width => wm_target_width.to_i, :offset_x => wm_target_offset_x.to_i, :offset_y => wm_target_offset_y.to_i }
-		end
-
-		if image.is_landscape
-			return landscape(watermark, image)
-		else
-			return portrait(watermark, image)
-		end
-	end
-
 	def watermark(path, id)
 		image = Photo.new(path)
 
@@ -162,8 +175,8 @@ class Photography
 			temp_path = Files.get_temp_path()
 			if current_config[:watermark] != nil
 				watermark = Photo.new(current_config[:watermark])
-				wm_position = get_wm_position(watermark, image)
-				watermarked_image = image.add_watermark(watermark, wm_position, temp_path)
+				wm_position_calc = WatermarkPositionCalculator.new(watermark, image)
+				watermarked_image = image.add_watermark(watermark, wm_position_calc, temp_path)
 			else 
 				Files.copy_file(image.get_path, temp_path)
 				watermarked_image = Photo.new(temp_path)
