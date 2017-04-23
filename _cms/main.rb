@@ -32,6 +32,19 @@ module ImageMagick
 		call += "#{change_file} #{base_file} #{output_image}"
 		system(call)
 	end
+
+	def ImageMagick.convert(input_option, input_file, output_option, output_file)
+		call = "convert "
+		input_option.each do |pair|
+			call += "-#{pair[0]} #{pair[1]} "
+		end
+		call += "#{input_file} "
+		output_option.each do |pair|
+			call += "-#{pair[0]} #{pair[1]} "
+		end
+		call += "#{output_file}"
+		system(call)
+	end
 end
 
 
@@ -77,7 +90,12 @@ class Photography
 
 
 	def resize_and_compress(from, longest_edge, quality, to)
-		system("convert #{from} -resize #{longest_edge}x#{longest_edge} -quality #{quality}% #{to}")
+		input_option = {}
+		output_option = {
+			"resize" => "#{longest_edge}x#{longest_edge}",
+			"quality" => "#{quality}%"
+		}
+		ImageMagick.convert(input_option, from, output_option, to)
 	end
 
 	def parse_image(path)
