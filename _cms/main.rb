@@ -129,7 +129,25 @@ class WatermarkPositionCalculator
 			return @image.get_height * 1 / 5
 		end
 	end
+end
 
+class PhotoDB
+	def prependPhoto(thumbnail_path, fullpic_path, photo_id, caption)
+		# Copy the photo to the assets-folder
+		Files.copy_file(thumbnail_path, "../assets/img/thumb/#{photo_id}.jpg")
+		Files.copy_file(fullpic_path, "../assets/img/full/#{photo_id}.jpg")
+
+		# Register the new photo with the photography.yml file
+		temp_path = Files.get_temp_path()
+		File.open(temp_path, 'a') do |file|
+			file << "- path: #{photo_id}.jpg\n"
+			file << "  title: #{caption}\n"
+			file << File.read("../_data/photography.yml")
+		end
+
+		Files.copy_file(temp_path, "../_data/photography.yml")
+		Files.remove_file(temp_path)
+	end
 end
 
 class Photography
@@ -190,23 +208,13 @@ class Photography
 		return retval
 	end
 
-	def main()
+	def main(photo_db)
 		id = ask("ID? (short name that the photograph is referred to internally)")
 		title = ask("Title? (shown below the photograph)")
 		path = ask("Path to the original photograph?")
 		paths = watermark(path, id)
-		Files.copy_file(paths[:thumb], "../assets/img/thumb/#{id}.jpg")
-		Files.copy_file(paths[:alexanderweinert], "../assets/img/full/#{id}.jpg")
 
-		temp_path = Files.get_temp_path()
-		File.open(temp_path, 'a') do |file|
-			file << "- path: #{id}.jpg\n"
-			file << "  title: #{title}\n"
-			file << File.read("../_data/photography.yml")
-		end
-
-		Files.copy_file(temp_path, "../_data/photography.yml")
-		Files.remove_file(temp_path)
+		photo_db.prependPhoto(paths[:thumb], paths[:alexanderweinert], id, title)
 	end
 end
 
@@ -215,7 +223,7 @@ def main()
 		menu.prompt = "What would you like to edit?"
 
 		menu.choices(:Photography) { 
-			Photography.new().main
+			Photography.new().main(PhotoDB.new())
 		}
 	end
 end
