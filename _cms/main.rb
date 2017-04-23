@@ -47,6 +47,54 @@ module ImageMagick
 	end
 end
 
+class Photo
+	def initialize(path)
+		@path = path
+		size = FastImage.size(path)
+		@width = size[0]
+		@height = size[1]
+	end
+
+	def get_path()
+		return @path
+	end
+
+	def get_width()
+		return @width
+	end
+
+	def get_height()
+		return @height
+	end
+
+	def is_landscape()
+		# We treat square photos as portraits
+		return @width > @height
+	end
+
+	def resize_and_compress(longest_edge, quality, to)
+		input_option = {}
+		output_option = {
+			"resize" => "#{longest_edge}x#{longest_edge}",
+			"quality" => "#{quality}%"
+		}
+		ImageMagick.convert(input_option, @path, output_option, to)
+
+		return Photo.new(to)
+	end
+
+	def add_watermark(watermark, wm_position, target)
+		params = {
+			"watermark" => "30%",
+			"gravity" => "southeast",
+			"geometry" => "#{wm_position[:width]}x+#{wm_position[:offset_x]}+#{wm_position[:offset_y]}"
+		}
+		ImageMagick.composite(watermark.get_path, @path, target, params)
+
+		return Photo.new(target)
+	end
+end
+
 
 class Photography
 	def initialize()
@@ -78,53 +126,23 @@ class Photography
 		}
 	end
 
-	def add_watermark(input, watermark, wm_position, target)
-		params = {
-			"watermark" => "30%",
-			"gravity" => "southeast",
-			"geometry" => "#{wm_position[:width]}x+#{wm_position[:offset_x]}+#{wm_position[:offset_y]}"
-		}
-		ImageMagick.composite(watermark[:path], input[:path], target, params)
-	end
-
-
-
-	def resize_and_compress(from, longest_edge, quality, to)
-		input_option = {}
-		output_option = {
-			"resize" => "#{longest_edge}x#{longest_edge}",
-			"quality" => "#{quality}%"
-		}
-		ImageMagick.convert(input_option, from, output_option, to)
-	end
-
-	def parse_image(path)
-		size = FastImage.size(path)
-		return { :path => path, :width => size[0], :height => size[1] }
-	end
-
-	def is_landscape(image)
-		# We treat square photos as portraits
-		return image[:width] > image[:height]
-	end
-
 	def get_wm_position(watermark, image)
 		def landscape(watermark, image)
-			wm_target_width = image[:width] / 4.0
-			wm_target_height = wm_target_width / watermark[:width] * watermark[:height]
-			wm_target_offset_x = image[:width] * 1 / 8
+			wm_target_width = image.get_width / 4.0
+			wm_target_height = wm_target_width / watermark.get_width * watermark.get_height
+			wm_target_offset_x = image.get_width * 1 / 8
 			wm_target_offset_y = wm_target_height * 1
 			return { :width => wm_target_width.to_i, :offset_x => wm_target_offset_x.to_i, :offset_y => wm_target_offset_y.to_i }
 		end
 
 		def portrait(watermark, image)
-			wm_target_width = image[:width] / 3.5
-			wm_target_offset_x = image[:width] * 1 / 4
-			wm_target_offset_y = image[:height] * 1 / 5
+			wm_target_width = image.get_width / 3.5
+			wm_target_offset_x = image.get_width * 1 / 4
+			wm_target_offset_y = image.get_height * 1 / 5
 			return { :width => wm_target_width.to_i, :offset_x => wm_target_offset_x.to_i, :offset_y => wm_target_offset_y.to_i }
 		end
 
-		if is_landscape(image)
+		if image.is_landscape
 			return landscape(watermark, image)
 		else
 			return portrait(watermark, image)
@@ -132,27 +150,29 @@ class Photography
 	end
 
 	def watermark(path, id)
-		image = parse_image(path)
+		image = Photo.new(path)
 
 		basename = id
 		Files.make_dir(basename)
 		retval = {}
 		@config.each do |pair|
+			config_id = pair[0]
 			current_config = pair[1]
 
 			temp_path = Files.get_temp_path()
 			if current_config[:watermark] != nil
-				watermark = parse_image(current_config[:watermark])
+				watermark = Photo.new(current_config[:watermark])
 				wm_position = get_wm_position(watermark, image)
-				add_watermark(image, watermark, wm_position, temp_path)
+				watermarked_image = image.add_watermark(watermark, wm_position, temp_path)
 			else 
-				Files.copy_file(image[:path], temp_path)
+				Files.copy_file(image.get_path, temp_path)
+				watermarked_image = Photo.new(temp_path)
 			end
 
 			target_path = "#{basename}/#{basename}-#{current_config[:suffix]}.jpg"
-			resize_and_compress(temp_path, current_config[:longest_edge],current_config[:quality], target_path)
-			Files.remove_file(temp_path)
-			retval[pair[0]] = target_path
+			watermarked_image.resize_and_compress(current_config[:longest_edge], current_config[:quality], target_path)
+			Files.remove_file(watermarked_image.get_path)
+			retval[config_id] = target_path
 		end
 		return retval
 	end
