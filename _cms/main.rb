@@ -157,7 +157,7 @@ class Photography
 				:suffix => "thumb",
 				:watermark => nil,
 				:quality => 90,
-				:longest_edge => 300
+				:longest_edge => 600
 			},
 			:alexanderweinert => {
 				:suffix => "aw",

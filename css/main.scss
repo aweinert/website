@@ -63,19 +63,25 @@ $on-laptop:        800px;
 }
 
 .gallery-thumbnail {
-	padding-left: 1%;
-	padding-right: 1%;
-	padding-bottom: 1%;
-	padding-top: 1%;
-	width: 33.33%;
-	height: 262px;
-	line-height: 240px;
+	padding-top: .5%;
+	padding-left: .5%;
+	padding-right: .5%;
+	padding-bottom: .5%;
+	width: 33.3%;
 	float: left;
-	text-align: center;
 	img {
-		vertical-align: middle;
-		max-height: 240px;
+		overflow: hidden;
+		position: absolute;
+		object-fit: cover;
+		height: $content-width * .29;
+		width: $content-width * .29;
 	}
+}
+
+.gallery-thumbnail:after {
+	content: "";
+	display: block;
+	padding-bottom:100%;
 }
 
 
