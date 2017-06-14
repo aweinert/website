@@ -60,6 +60,7 @@ $on-laptop:        800px;
 	content: "";
 	display: table;
 	clear: both;
+	text-align: center;
 }
 
 .gallery-thumbnail {
@@ -67,14 +68,14 @@ $on-laptop:        800px;
 	padding-left: .5%;
 	padding-right: .5%;
 	padding-bottom: .5%;
-	width: 33.3%;
 	float: left;
+	width: 33%;
 	img {
 		overflow: hidden;
 		position: absolute;
 		object-fit: cover;
-		height: $content-width * .29;
-		width: $content-width * .29;
+		height: 400px;
+		width: 400px;
 	}
 }
 
