@@ -50,7 +50,7 @@ end
 class Photo
 	def initialize(path)
 		@path = path
-		size = FastImage.size(path)
+		size = FastImage.size(@path)
 		@width = size[0]
 		@height = size[1]
 	end
