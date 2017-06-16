@@ -64,19 +64,28 @@ $on-laptop:        800px;
 }
 
 .gallery-thumbnail {
-	padding-top: .5%;
-	padding-left: .5%;
-	padding-right: .5%;
-	padding-bottom: .5%;
 	float: left;
-	width: 33%;
+	width: $content-width * .3;
+	overflow: hidden;
 	img {
 		overflow: hidden;
 		position: absolute;
 		object-fit: cover;
-		height: 400px;
-		width: 400px;
+		height: $content-width * .3;
+		width: $content-width * .3;
+		-webkit-transition: all .2s ease; /* Safari and Chrome */
+		-moz-transition: all .2s ease; /* Firefox */
+		-ms-transition: all .2s ease; /* IE 9 */
+		-o-transition: all .2s ease; /* Opera */
+		transition: all .2s ease;
+		opacity:1;
+		filter:alpha(opacity=100);
 	}
+}
+
+.gallery-thumbnail:hover img {
+	opacity:.8;
+	filter:alpha(opacity=100);
 }
 
 .gallery-thumbnail:after {
