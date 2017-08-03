@@ -1,0 +1,7 @@
+<ul class = "publication">
+	{% include_relative _layouts/bib_common.html %}
+	<li class="venue-line">
+		{{ entry.note }}.
+		<a href="../assets/pdf/pub/{{entry.year}}/{{entry.key}}.pdf">PDF</a>.
+	</li>
+</ul>
