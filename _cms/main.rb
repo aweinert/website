@@ -26,23 +26,25 @@ module ImageMagick
 	def ImageMagick.composite(change_file, base_file, output_image, params)
 		call = "composite "
 		params.each do |pair|
-			call += "-#{pair[0]} #{pair[1]} "
+			call += "-#{pair[0]} \"#{pair[1]}\" "
 		end
 
 		call += "#{change_file} #{base_file} #{output_image}"
+		puts call
 		system(call)
 	end
 
 	def ImageMagick.convert(input_option, input_file, output_option, output_file)
 		call = "convert "
 		input_option.each do |pair|
-			call += "-#{pair[0]} #{pair[1]} "
+			call += "-#{pair[0]} \"#{pair[1]}\" "
 		end
 		call += "#{input_file} "
 		output_option.each do |pair|
-			call += "-#{pair[0]} #{pair[1]} "
+			call += "-#{pair[0]} \"#{pair[1]}\" "
 		end
 		call += "#{output_file}"
+		puts call
 		system(call)
 	end
 end
@@ -72,12 +74,18 @@ class Photo
 		return @width > @height
 	end
 
-	def resize_and_compress(longest_edge, quality, to)
+	def resize_and_compress(max_width, max_height, quality, to)
 		input_option = {}
-		output_option = {
-			"resize" => "#{longest_edge}x#{longest_edge}",
-			"quality" => "#{quality}%"
-		}
+		if(not max_width == nil)
+			output_option = {
+				"resize" => "#{max_width}x#{max_height}>",
+				"quality" => "#{quality}%"
+			}
+		else
+			output_option = {
+				"quality" => "#{quality}%"
+			}
+		end
 		ImageMagick.convert(input_option, @path, output_option, to)
 
 		return Photo.new(to)
@@ -104,9 +112,9 @@ class WatermarkPositionCalculator
 	# Returns the width the watermark shall be displayed at in px
 	def get_width()
 		if(@image.is_landscape)
-			return @image.get_width / 4.0
+			return @image.get_width / 6.0
 		else
-			return @image.get_width / 3.5
+			return @image.get_width / 5.0
 		end
 	end
 
@@ -115,19 +123,11 @@ class WatermarkPositionCalculator
 	end
 
 	def get_offset_x()
-		if @image.is_landscape
-			return @image.get_width * 1 / 8
-		else
-			return @image.get_width * 1 / 4
-		end
+		return self.get_offset_y
 	end
 
 	def get_offset_y()
-		if @image.is_landscape
-			return self.get_height
-		else
-			return @image.get_height * 1 / 5
-		end
+		return self.get_height * 1 / 2
 	end
 end
 
@@ -157,25 +157,34 @@ class Photography
 				:suffix => "thumb",
 				:watermark => nil,
 				:quality => 90,
-				:longest_edge => 600
+				:max_width => 600,
+				:max_height => 600
 			},
 			:alexanderweinert => {
 				:suffix => "aw",
 				:watermark => "wm-aw.png",
 				:quality => 90,
-				:longest_edge => 1000
+				:max_width => 1920,
+				:max_height => 1080
 			},
 			:facebook => {
 				:suffix => "fb",
 				:watermark => "wm-fb.png",
 				:quality => 90,
-				:longest_edge => 1000
+				:max_width => 1920,
+				:max_height => 1080
 			},
 			:fivehundredpx => {
 				:suffix => "500px",
+				:watermark => nil,
+				:quality => 90
+			},
+			:fivehundredpxwm => {
+				:suffix => "500pxwm",
 				:watermark => "wm-500px.png",
 				:quality => 90,
-				:longest_edge => 1000
+				:max_width => 1920,
+				:max_height => 1080
 			}
 		}
 	end
@@ -201,7 +210,7 @@ class Photography
 			end
 
 			target_path = "#{basename}/#{basename}-#{current_config[:suffix]}.jpg"
-			watermarked_image.resize_and_compress(current_config[:longest_edge], current_config[:quality], target_path)
+			watermarked_image.resize_and_compress(current_config[:max_width], current_config[:max_height], current_config[:quality], target_path)
 			Files.remove_file(watermarked_image.get_path)
 			retval[config_id] = target_path
 		end
@@ -218,6 +227,12 @@ class Photography
 	end
 end
 
+def main2()
+	ARGV.each do |path|
+		Photography.new().watermark(path, File.basename(path, ".jpg"))
+	end
+end
+
 def main()
 	choose do |menu|
 		menu.prompt = "What would you like to edit?"
@@ -228,4 +243,4 @@ def main()
 	end
 end
 
-main()
+main2()
