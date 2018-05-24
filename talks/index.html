@@ -2,9 +2,16 @@
 layout: default
 title: Talks
 ---
+<style>
+ul {
+	list-style-type: square;
+}
+</style>
 
+<h1>2017</h1>
 <ul>
 {% for talk in site.data.talks %}
+{% if talk.date contains 2017 %}
 <li>{{ talk.date }}: <b>{{ talk.title }}</b>.<br> {{ talk.occasion }}.
 {% if talk.slideslink %}
 <a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.slideslink}}">Slides</a>.
@@ -16,5 +23,82 @@ title: Talks
 <a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.posterlink}}">Poster</a>.
 {% endif %}
 </li>
+{% endif %}
+{% endfor %}
+</ul>
+
+<h1>2016</h1>
+<ul>
+{% for talk in site.data.talks %}
+{% if talk.date contains 2016 %}
+<li>{{ talk.date }}: <b>{{ talk.title }}</b>.<br> {{ talk.occasion }}.
+{% if talk.slideslink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.slideslink}}">Slides</a>.
+{% endif %}
+{% if talk.handoutlink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.handoutlink}}">Handout</a>.
+{% endif %}
+{% if talk.posterlink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.posterlink}}">Poster</a>.
+{% endif %}
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+
+<h1>2015</h1>
+<ul>
+{% for talk in site.data.talks %}
+{% if talk.date contains 2015 %}
+<li>{{ talk.date }}: <b>{{ talk.title }}</b>.<br> {{ talk.occasion }}.
+{% if talk.slideslink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.slideslink}}">Slides</a>.
+{% endif %}
+{% if talk.handoutlink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.handoutlink}}">Handout</a>.
+{% endif %}
+{% if talk.posterlink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.posterlink}}">Poster</a>.
+{% endif %}
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+
+<h1>2014</h1>
+<ul>
+{% for talk in site.data.talks %}
+{% if talk.date contains 2014 %}
+<li>{{ talk.date }}: <b>{{ talk.title }}</b>.<br> {{ talk.occasion }}.
+{% if talk.slideslink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.slideslink}}">Slides</a>.
+{% endif %}
+{% if talk.handoutlink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.handoutlink}}">Handout</a>.
+{% endif %}
+{% if talk.posterlink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.posterlink}}">Poster</a>.
+{% endif %}
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+
+<h1>2012</h1>
+<ul>
+{% for talk in site.data.talks %}
+{% if talk.date contains 2012 %}
+<li>{{ talk.date }}: <b>{{ talk.title }}</b>.<br> {{ talk.occasion }}.
+{% if talk.slideslink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.slideslink}}">Slides</a>.
+{% endif %}
+{% if talk.handoutlink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.handoutlink}}">Handout</a>.
+{% endif %}
+{% if talk.posterlink %}
+<a href="../assets/pdf/talk/{{talk.date | date: "%Y" }}/{{talk.posterlink}}">Poster</a>.
+{% endif %}
+</li>
+{% endif %}
 {% endfor %}
 </ul>
