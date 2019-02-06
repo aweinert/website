@@ -2,6 +2,6 @@ language: ruby
 rvm:
   - 2.4.1
 
-install: gem install jekyll
+install: gem install jekyll jekyll-scholar
 
 script: jekyll b
