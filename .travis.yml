@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.4.1
 
-install: gem install jekyll jekyll-scholar
+install: gem install jekyll jekyll-scholar html-proofer
 
 script:
 - jekyll b
