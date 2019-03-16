@@ -3,7 +3,7 @@ layout: default
 ---
 
 I am currently working at the [German Aerospace Center](https://www.dlr.de) at the lab for [Simulation and Software Technology](https://www.dlr.de/sc).
-There, we are developing the [Remote Component Environment](https://www.rcenvironment.de), a tool for development of distributed, data-driven workflows, that is currently mainly used in the early stages of airplane design.
+There, we are developing the [Remote Component Environment](http://www.rcenvironment.de), a tool for development of distributed, data-driven workflows, that is currently mainly used in the early stages of airplane design.
 The tool itself is open source, so feel free to [have a look](https://github.com/rcenvironment).
 Moreover, we are always looking for [new colleagues](https://www.dlr.de/dlr/jobs/en/desktopdefault.aspx#SimulationsSoftwaretechnik/S:142).
 
