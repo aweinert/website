@@ -5,5 +5,5 @@ rvm:
 install: gem install jekyll jekyll-scholar
 
 script:
-	- jekyll b
-	- htmlproofer --allow-hash-href --empty-alt-ignore _site
+- jekyll b
+- htmlproofer --allow-hash-href --empty-alt-ignore _site
