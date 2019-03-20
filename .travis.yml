@@ -1,9 +1,24 @@
 language: ruby
 rvm:
-  - 2.4.1
+- 2.4.1
+
+env:
+  global:
+  # Variable RSYNC_PASSWORD
+  - secure: OyO2AuzS0NkE2k69gndu5bGMM9NcfzHHO3tX/7W92brrwjpOnDc/X4E5SWaBZDTsWQjeAlgCmmss8VjQSz3Yn28ktJtmE3r+ocY0zfi5yrGz7QlS5mR0sCGEGXyDQBjbHaZgagGz9J1rNa98WTLx4TiVxIJgSRq0oZf1kE4TNnQDoROUEmIRYmMuf9IzPW1wcMIBobkCJUPhU7mpAAXUxs/qjhF9q71lcOY73BHYsGZPMPVLMpGzExepVvIN78LClw+tAYbto/SRs+Jcwd9DvSe3/56l4sNz1STveizKFGDj+eAuCqfJoT1X0ruIpWJkk9syOB/haD1ImqOLHbkrfvWz0a3BBlho6jo52zy4AQUg7IDtZjWtv1MVWXiB3y5aAAH7hkb2tnakFvz/zZYMezj9UpKELmhYAiMFLpLU31yVBEwWMxzZ64VMYN2NiOEj1eFiq7oPtOoSMf4Ab3zywSwuPM7Xai3h3VuDgLKKDwkcdXcoUFKjVE0S1rOgZC0TEsU+6tF7Y1UM5MAzvNT7BYURuPBtLhz1AFGKtTwWa94193Igm5Jm+tsbHsniWcvAMO7WrMSngXXSoPhFMv3i/liruA9c0PT2PJbUfpslAZZ0HqbxaA8dF+91j46i7YU7OMFqQx/AmcQ68qq/pdeb2xVf64iiw/eDKSHsBWR2lzE=
+  # Variable RSYNC_HOST
+  - secure: KSLi+oCbmVoeWgRk4XPtPN1Q3WA6he1+H+Ozd+aluA/iZl4e9h77OnAYyagPOWgdvsrO0J3fUgD37L8/0Ze7rFBux0YVq6RuLEIZyGuQM98rrhb2O5e6+bT73GhTsmZSlEAe6/OZIT/rNZmGbDJMkpeZMixaR+/h6I8nSviPbBSt6wsNyacIuuOxerB8EuekuywsYiSsI3tRCrq0Di7flpkIlizNzidh8+MdW6DqYvHNPhrq6Yv+pXxpiDLS+aoBun/qUjFtNlQvmdDy1820f0HY4PapPA3ws488VnBbGbpQo0WFHtV9oSLjmQhg4EZ7TD2f3G5yILN98LDPlLSkTBjRiLw1zRDaDxCGY1W530CSw2h80aYBk8EzN6Oufwgl9c8kpKp7fiH0DICTzIkpVpCQA/Jauik5KkXQiSVwZSU98hzeUm6yZ6T5tS3tvCx8yoPmKBX0vhJOlKrIgVC7zDc7Ybk8bOK8685QX+gdW1qTI6FLXP524hPMP+oeHNeCecROuP+9mEO+HAOzRgfIkH0sAM3wlb2jXtr5O/PBiEQ/ah7vVDlqRDO+pE4FK4NMs5AhhqeKRiajR2B9pgo6RUNo+kaitxISkqIkO3aQLiipabaH6WS+EcL+C6ozHsJcNeCzQyS5nyuG9Y4UDSNzhXwF66la3pd/SvcfVOUhv3I=
+
+#stages:
+#- name: deploy
+  #if: repo = aweinert/website and branch = master and env(RSYNC_HOST) is set and env(RSYNC_PASSWORD) is set
 
 install: gem install jekyll jekyll-scholar html-proofer
 
 script:
 - jekyll b
 - htmlproofer --allow-hash-href --empty-alt-ignore --only-4xx _site
+
+deploy:
+  provider: script
+  script: rsync -r _site/ env(RSYNC_HOST):/www/
