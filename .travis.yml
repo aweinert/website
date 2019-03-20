@@ -11,10 +11,7 @@ env:
 
 stages:
   name: deploy
-  	if: repo = aweinert/website and
-		branch = ci-deploy and
-		env(RSYNC_HOST) is set and
-		env(RSYNC_PASSWORD) is set
+  if: repo = aweinert/website and branch = ci-deploy and env(RSYNC_HOST) is set and env(RSYNC_PASSWORD) is set
 
 install: gem install jekyll jekyll-scholar html-proofer
 
@@ -26,4 +23,4 @@ deploy:
   provider: script
   script: rsync -r _site/ env(RSYNC_HOST):/www/
   on:
-  	branch: ci-deploy
+    branch: ci-deploy
