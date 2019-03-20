@@ -12,7 +12,7 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script: cd _site ; find . -type f -exec curl --verbose --user FTP_USER:FTP_PASSWORD
+  script: cd _site ; find . -type f -exec curl --verbose --user $FTP_USER:$FTP_PASSWORD
     --ftp-create-dirs -T {} $FTP_HOST/\{\} \;
   on:
     branch: ci-deploy
