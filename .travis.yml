@@ -9,9 +9,9 @@ env:
   # Variable RSYNC_HOST
   - secure: KSLi+oCbmVoeWgRk4XPtPN1Q3WA6he1+H+Ozd+aluA/iZl4e9h77OnAYyagPOWgdvsrO0J3fUgD37L8/0Ze7rFBux0YVq6RuLEIZyGuQM98rrhb2O5e6+bT73GhTsmZSlEAe6/OZIT/rNZmGbDJMkpeZMixaR+/h6I8nSviPbBSt6wsNyacIuuOxerB8EuekuywsYiSsI3tRCrq0Di7flpkIlizNzidh8+MdW6DqYvHNPhrq6Yv+pXxpiDLS+aoBun/qUjFtNlQvmdDy1820f0HY4PapPA3ws488VnBbGbpQo0WFHtV9oSLjmQhg4EZ7TD2f3G5yILN98LDPlLSkTBjRiLw1zRDaDxCGY1W530CSw2h80aYBk8EzN6Oufwgl9c8kpKp7fiH0DICTzIkpVpCQA/Jauik5KkXQiSVwZSU98hzeUm6yZ6T5tS3tvCx8yoPmKBX0vhJOlKrIgVC7zDc7Ybk8bOK8685QX+gdW1qTI6FLXP524hPMP+oeHNeCecROuP+9mEO+HAOzRgfIkH0sAM3wlb2jXtr5O/PBiEQ/ah7vVDlqRDO+pE4FK4NMs5AhhqeKRiajR2B9pgo6RUNo+kaitxISkqIkO3aQLiipabaH6WS+EcL+C6ozHsJcNeCzQyS5nyuG9Y4UDSNzhXwF66la3pd/SvcfVOUhv3I=
 
-#stages:
-#- name: deploy
-  #if: repo = aweinert/website and branch = master and env(RSYNC_HOST) is set and env(RSYNC_PASSWORD) is set
+stages:
+- name: deploy
+  if: repo = aweinert/website and branch = ci-deploy and env(RSYNC_HOST) is set and env(RSYNC_PASSWORD) is set
 
 install: gem install jekyll jekyll-scholar html-proofer
 
