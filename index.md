@@ -6,6 +6,7 @@ I am currently working at the [German Aerospace Center](https://www.dlr.de) at t
 There, we are developing the [Remote Component Environment](http://www.rcenvironment.de), a tool for development of distributed, data-driven workflows, that is currently mainly used in the early stages of airplane design.
 The tool itself is open source, so feel free to [have a look](https://github.com/rcenvironment).
 Moreover, we are always looking for [new colleagues](https://www.dlr.de/dlr/jobs/en/desktopdefault.aspx#SimulationsSoftwaretechnik/S:142).
+If you have any questions, feel free to send me an email.
 
 Previously, I have been a Ph.D. student with the
 [Reactive Systems Group](http://react.uni-saarland.de) at
