@@ -21,6 +21,7 @@ script:
 
 deploy:
   provider: script
-  script: rsync -r _site/ env(RSYNC_HOST):/www/
+  skip_cleanup: true
+  script: rsync -r _site/ $RSYNC_HOST:/www/
   on:
     branch: ci-deploy
