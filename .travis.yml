@@ -16,8 +16,8 @@ before_deploy:
 - openssl aes-256-cbc -K $encrypted_5a768c84c6ed_key -iv $encrypted_5a768c84c6ed_iv
   -in alexanderweinert.net.enc -out alexanderweinert.net -d
 - chmod 600 alexanderweinert.net
-- ssh-add alexanderweinert.net
 - eval "$(ssh-agent -s)"
+- ssh-add alexanderweinert.net
 deploy:
   provider: script
   skip_cleanup: true
