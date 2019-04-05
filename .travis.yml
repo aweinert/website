@@ -21,6 +21,6 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: find . | xargs -I {} scp -v -i ../alexanderweinert.net {} alexanderweinert.net:/www/{}
+  script: cd _site && find . | xargs -I {} scp -v -i ../alexanderweinert.net {} alexanderweinert.net:/www/{}
   on:
     branch: ci-deploy
