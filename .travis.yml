@@ -21,6 +21,6 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -r -v _site/ alexanderweinert.net:/www/
+  script: find . | xargs -I {} scp -v -i ../alexanderweinert.net {} alexanderweinert.net:/www/{}
   on:
     branch: ci-deploy
