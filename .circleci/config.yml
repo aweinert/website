@@ -1,0 +1,18 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: jekyll/jekyll
+
+    working_directory: ~/
+
+    steps:
+      - checkout
+      - run:
+          name: build website
+          command: jekyll b
