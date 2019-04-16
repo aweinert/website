@@ -6,13 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: jekyll/jekyll
-
-    working_directory: ~/
-
     steps:
       - checkout
-      - run:
-          name: build website
-          command: jekyll b
+      - run: jekyll b
