@@ -9,4 +9,4 @@ jobs:
       - image: jekyll/jekyll
     steps:
       - checkout
-      - run: jekyll b
+      - run: cd project && jekyll b
