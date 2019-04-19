@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: jekyll/builder
+      - image: jekyll/builder:3.8.4
     steps:
       - checkout
       - run: jekyll b
