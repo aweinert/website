@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: jekyll/jekyll
+      - image: jekyll/builder
     steps:
       - checkout
       - run: cd project && jekyll b
