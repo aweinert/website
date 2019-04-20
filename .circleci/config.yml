@@ -10,5 +10,5 @@ jobs:
     steps:
       - run: git clone https://github.com/aweinert/website.git .
       - run: ls
-      - run: jekyll hyde
+      - run: ls && cat _config.yml && jekyll hyde
       - run: jekyll b
