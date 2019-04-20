@@ -10,6 +10,6 @@ jobs:
     steps:
       - run: git clone https://github.com/aweinert/website.git .
       - run: ls
-      - run: bundle install
-      - run: bundle exec jekyll hyde -s .
-      - run: bundle exec jekyll b -s .
+      - run: jekyll hyde -s .
+      - run: jekyll b -s .
+	  - run: ls _site
