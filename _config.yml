@@ -9,7 +9,7 @@ plugins: ['jekyll/scholar']
 
 # Build settings
 markdown: kramdown
-exclude: [README.md,alexanderweinert.net,alexanderweinert.net.enc]
+exclude: [vendor,README.md,alexanderweinert.net,alexanderweinert.net.enc]
 
 # jekyll-scholar settings
 scholar:
