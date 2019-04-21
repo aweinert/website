@@ -1,17 +1,30 @@
-# Ruby CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
-#
+defaults: &defaults
+  working_directory: ~/repo
 version: 2
 jobs:
   build:
+    <<: *defaults
     docker:
-      - image: jekyll/builder:3.8.4
+      - image: circleci/ruby:2.5
+    environment:
+      BUNDLE_PATH: ~/repo/vendor/bundle
     steps:
-      - run: git clone https://github.com/aweinert/website.git .
-      - run: ls
-      - run: pwd
-      - run: gem install jekyll-scholar
-      - run: jekyll hyde -s .
-      - run: jekyll b -s .
-      - run: ls _site
+      - checkout
+      - restore_cache:
+          keys:
+            - rubygems-v1-{{ checksum "Gemfile.lock" }}
+            - rubygems-v1-fallback
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      - save_cache:
+          key: rubygems-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: Jekyll build
+          command: bundle exec jekyll build
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - _site
