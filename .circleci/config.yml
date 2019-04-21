@@ -11,7 +11,7 @@ jobs:
       - run: git clone https://github.com/aweinert/website.git .
       - run: ls
       - run: pwd
-      - run: bundler install
+	  - run: gem install jekyll-scholar
       - run: jekyll hyde -s .
       - run: jekyll b -s .
       - run: ls _site
