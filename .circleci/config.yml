@@ -10,6 +10,9 @@ jobs:
       BUNDLE_PATH: ~/repo/vendor/bundle
     steps:
       - checkout
+      - run:
+          name: Rsync Install
+          command: sudo apt-get install rsync
       - restore_cache:
           keys:
             - rubygems-v1-{{ checksum "Gemfile.lock" }}
@@ -24,6 +27,9 @@ jobs:
       - run:
           name: Jekyll build
           command: bundle exec jekyll build
+      - run:
+          name: Htmlproofer
+          command: htmlproofer --allow-hash-href --empty-alt-ignore --only-4xx _site
       - run:
           name: Deploy
           command: rsync -r _site/ alexanderweinert.net:/www/
