@@ -30,9 +30,10 @@ jobs:
       - run:
           name: Htmlproofer
           command: bundle exec htmlproofer --allow-hash-href --empty-alt-ignore --only-4xx _site
+      - add_ssh_keys
       - run:
           name: Deploy
-          command: rsync -4 -vvvv -r _site/ alexanderweinert.net:/www/
+          command: rsync -4 -vvvv -r _site/ alexanderweinert.net@alexanderweinert.net:/www/
       - persist_to_workspace:
           root: ./
           paths:
