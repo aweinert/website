@@ -32,7 +32,7 @@ jobs:
           command: bundle exec htmlproofer --allow-hash-href --empty-alt-ignore --only-4xx _site
       - run:
           name: Deploy
-          command: rsync -4 -v -r _site/ alexanderweinert.net:/www/
+          command: rsync -4 -vvvv -r _site/ alexanderweinert.net:/www/
       - persist_to_workspace:
           root: ./
           paths:
