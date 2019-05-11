@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-rsync -r --progress alexanderweinert.net:/www/assets/ ./assets
