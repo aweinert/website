@@ -1,6 +1,6 @@
 .PHONY: check_ruby check_bundler
 
-HOOKS = pre-commit
+HOOKS = pre-commit pre-push
 HOOK_INSTALL_DIR = .git/hooks
 
 build: check_ruby check_bundler dependencies install_hooks
