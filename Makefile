@@ -25,7 +25,9 @@ Gemfile.lock: Gemfile
 
 install_hooks: $(foreach hook,$(HOOKS),$(HOOK_INSTALL_DIR)/$(hook))
 
-
 .git/hooks/%: _hooks/%
 	cp $< $@
-	chmod +x %@
+	chmod +x $@
+
+publish: build
+	rsync -r _site/ alexanderweinert.net:/www/
