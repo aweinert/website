@@ -1,9 +1,11 @@
-.PHONY: check_ruby check_bundler
-
 HOOKS = pre-commit pre-push
 HOOK_INSTALL_DIR = .git/hooks
 
-build: check_ruby check_bundler dependencies install_hooks
+.PHONY: check_ruby check_bundler scale_photos
+
+build: _build scale_photos
+
+_build: check_ruby check_bundler dependencies install_hooks
 	bundle exec jekyll build
 	bundle exec htmlproofer _site --allow-hash-href --empty-alt-ignore --only-4xx _site
 
