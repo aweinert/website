@@ -4,24 +4,23 @@ include Magick
 $photos = []
 
 module Jekyll
-	class RenderPhotoTag < Liquid::Tag
-		def initialize(tag_name, path, tokens)
-			super
-			@path = path.strip
+	module PhotoPortfolioFilter
+		def photo_path_full(photo_id)
+			$photos.push(photo_id)
+			"/assets/img/thumb/#{photo_id}"
 		end
 
-		def render(context)
-			$photos.push(@path)
-
-			"<img src=\"/assets/img/thumb/#{@path}\"/>"
+		def photo_path_thumb(photo_id)
+			$photos.push(photo_id)
+			"/assets/img/full/#{photo_id}"
 		end
 	end
 end
 
-Liquid::Template.register_tag('photo', Jekyll::RenderPhotoTag)
+Liquid::Template.register_filter(Jekyll::PhotoPortfolioFilter)
+
 Jekyll::Hooks.register :site, :post_write { |site, hash|
 	$photos.each do |path|
-		puts "Resizing #{path}"
 		image = ImageList.new("_assets/img/#{path}").first
 		image.resize_to_fit(1000, 1000).write("_site/assets/img/full/#{path}")
 

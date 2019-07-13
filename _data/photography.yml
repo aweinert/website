@@ -1,52 +1,52 @@
-- path: rays-of-summer.jpg
+- id: rays-of-summer.jpg
   title: Last rays of Summer
-- path: londoneye.jpg
+- id: londoneye.jpg
   title: Pretty in... red?
-- path: dartagnan.jpg
+- id: dartagnan.jpg
   title: D'Artagnan
-- path: gutter.jpg
+- id: gutter.jpg
   title: Gutter
-- path: saltatio-mortis-mps-2.jpg
+- id: saltatio-mortis-mps-2.jpg
   title: Minstrels
-- path: mannheim-sunset.jpg
+- id: mannheim-sunset.jpg
   title: Day's End
-- path: railway-tracks.jpg
+- id: railway-tracks.jpg
   title: Three Generations
-- path: spring-cherry-tree.jpg
+- id: spring-cherry-tree.jpg
   title: Cherry Tree in Spring
-- path: saltatio-mortis-mps.jpg
+- id: saltatio-mortis-mps.jpg
   title: Saltatio Mortis at MPS Cologne
-- path: lake-constance.jpg
+- id: lake-constance.jpg
   title: Mountains at Lake Constance
-- path: norddeich-dog.jpg
+- id: norddeich-dog.jpg
   title: Norddeich, Lower Saxony, Germany
-- path: cologne-bridge.jpg
+- id: cologne-bridge.jpg
   title: Hohenzollernbridge, Cologne, Germany
-- path: london-beefeater.jpg
+- id: london-beefeater.jpg
   title: Billy Beefeater, Tower of London, UK
-- path: golden-gate-south-view.jpg
+- id: golden-gate-south-view.jpg
   title: Golden Gate Bridge, San Francisco, CA, USA
-- path: parkhaus.jpg
+- id: parkhaus.jpg
   title: Saarbrücken, Germany
-- path: frost.jpg
+- id: frost.jpg
   title: Frozen Morning Dew
-- path: grand-canyon-colorado-river-2.jpg
+- id: grand-canyon-colorado-river-2.jpg
   title: Grand Canyon, AZ, USA
-- path: washington-world-war-ii-memorial.jpg
+- id: washington-world-war-ii-memorial.jpg
   title: Washington D.C., USA
-- path: washington-dulles-space-shuttle.jpg
+- id: washington-dulles-space-shuttle.jpg
   title: Udvar-Hazy Center, Washington Dulles Airport, VA, USA
-- path: orlando-saturn-v-2.jpg
+- id: orlando-saturn-v-2.jpg
   title: Kennedy Space Center, Orlando, FL, USA
-- path: santa-monica-pier.jpg
+- id: santa-monica-pier.jpg
   title: Santa Monica, CA, USA
-- path: a620.jpg
+- id: a620.jpg
   title: A620 Exit Bismarckbrücke, Saarbrücken, Germany
-- path: san-diego-beach.jpg
+- id: san-diego-beach.jpg
   title: San Diego, CA, USA
-- path: grace-church-strings.jpg
+- id: grace-church-strings.jpg
   title: Grace Church, San Francisco, CA, USA
-- path: golden-gate-fog.jpg
+- id: golden-gate-fog.jpg
   title: Golden Gate Bridge, San Francisco, CA, USA
-- path: vienna-prater-tower.jpg
+- id: vienna-prater-tower.jpg
   title: Prater, Vienna, Austria

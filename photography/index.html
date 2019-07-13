@@ -14,12 +14,10 @@ If I have taken your photo somewhere or you would like to get one of the photos 
 Wenn ich ein Photo von dir gemacht habe oder wenn du eines der Photos unten in voller Größe und ohne Wasserzeichen haben möchtest, klick bitte <a href="photocontact.de.html">hier</a>.
 </p>
 
-{% photo a620.jpg %}
-
 <div class="gallery">
 {% for photo in site.data.photography %}
 <div class="gallery-thumbnail">
-	<a href="../assets/img/full/{{ photo.path }}" data-lightbox="gallery" data-title="{{ photo.title }}"> <img src="../assets/img/thumb/{{ photo.path }}"/> </a>
+	<a href="{{ photo.id | photo_path_full }}" data-lightbox="gallery" data-title="{{ photo.title }}"> <img src="{{ photo.id | photo_path_thumb }}"/> </a>
 </div>
 {% endfor %}
 </div>
