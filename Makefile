@@ -1,4 +1,4 @@
-HOOKS = pre-commit pre-push
+HOOKS = pre-push
 HOOK_INSTALL_DIR = .git/hooks
 
 .PHONY: check_ruby check_bundler scale_photos
