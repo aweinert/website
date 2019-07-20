@@ -75,6 +75,30 @@ module AlexanderWeinertNet
 
 			report_success("#{YAML_FILE} is syntactically correct")
 
+			report_status("Checking images referenced in #{YAML_FILE}")
+
+			data.each { |item| 
+				photo_id = item['id']
+
+				original_exists = File.file?("_assets/img/#{photo_id}")
+				if not original_exists then
+					error_message = "#{YAML_FILE} references photo #{photo_id}. For this, an original (_assets/img/#{photo_id}) does not exist."
+				end
+			}
+
+			if $failures_reported == 0 then
+				report_success("All images referenced in #{YAML_FILE} exist")
+			end
+
+			all_photos = Set.new Dir.glob("_assets/img/*.jpg").map { |x| File.basename(x) }
+			referenced_photos = data.select { |x| x.key?('id') }.map { |x| x['id'] }
+
+			all_photos.each { |photo_id| 
+				if not referenced_photos.include?(photo_id) then
+					warning_message ="The photo #{photo_id} is present as full version (#{get_full_path_display(photo_id)}), but not referenced in #{YAML_FILE}"
+					report_warning(warning_message)
+				end
+			}
 		end
 
 		def post_site_write(site, hash)
