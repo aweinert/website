@@ -11,6 +11,9 @@ plugins: ['jekyll/scholar']
 markdown: kramdown
 exclude: [README.md]
 
+collections:
+  - papers
+
 # jekyll-scholar settings
 scholar:
     bibliography_template: bib

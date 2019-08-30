@@ -3,6 +3,12 @@
 	<li class="venue-line">
 		{{ entry.type }}.
 		{{ entry.school }}.
+		{% comment %} Taken from https://stackoverflow.com/a/26410279 {% endcomment %}
+		{% capture pdf_path %}/assets/pdf/pub/{{entry.year}}/{{entry.key}}.pdf{% endcapture %}
+		{% for static_file in site.static_files %}
+			{% if static_file.path == pdf_path %}
 		<a href="../assets/pdf/pub/{{entry.year}}/{{entry.key}}.pdf">PDF</a>.
+			{% endif %}
+		{% endfor %}
 	</li>
 </ul>
